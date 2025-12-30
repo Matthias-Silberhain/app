@@ -1,1 +1,229 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matthias Silberhain App</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="description" content="Matthias Silberhain Portfolio App">
+    
+    <!-- Icons -->
+    <link rel="icon" href="https://matthias-silberhain.github.io/matthias-silberhain/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1>Matthias Silberhain</h1>
+            <button class="theme-btn" id="themeBtn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
 
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>Navigation</h3>
+                <button class="close-btn" id="closeBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="nav-list">
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> Über Mich</a></li>
+                <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> Projekte</a></li>
+                <li><a href="#skills" class="nav-link"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Kontakt</a></li>
+                <li><a href="#notes" class="nav-link"><i class="fas fa-sticky-note"></i> Notizen</a></li>
+                <li><a href="#cloud" class="nav-link"><i class="fas fa-cloud"></i> Cloud Sync</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Home -->
+            <section id="home" class="content-section active">
+                <div class="hero">
+                    <img src="https://matthias-silberhain.github.io/matthias-silberhain/bilder/matthias.png" 
+                         alt="Matthias Silberhain" 
+                         class="profile-img"
+                         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%234f46e5%22/><text x=%2250%22 y=%2250%22 font-size=%2220%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22white%22>MS</text></svg>'">
+                    <h2>Matthias Silberhain</h2>
+                    <p class="subtitle">Software Developer</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <i class="fas fa-project-diagram"></i>
+                            <span id="projectCount">12</span>
+                            <small>Projekte</small>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-code-branch"></i>
+                            <span id="commitCount">245</span>
+                            <small>Commits</small>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <span id="visitorCount">1.2k</span>
+                            <small>Besucher</small>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn primary" onclick="downloadCV()">
+                            <i class="fas fa-download"></i> Lebenslauf
+                        </button>
+                        <button class="btn secondary" onclick="shareApp()">
+                            <i class="fas fa-share-alt"></i> Teilen
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section id="about" class="content-section">
+                <h2><i class="fas fa-user"></i> Über Mich</h2>
+                <div class="about-content">
+                    <div class="info-card">
+                        <h3>Persönliche Daten</h3>
+                        <div class="info-item">
+                            <i class="fas fa-birthday-cake"></i>
+                            <div>
+                                <strong>Geburtstag</strong>
+                                <p>17.01.1996</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Standort</strong>
+                                <p>Deutschland</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <strong>Abschluss</strong>
+                                <p>B.Eng. Elektrotechnik</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section id="projects" class="content-section">
+                <h2><i class="fas fa-code"></i> Projekte</h2>
+                <div class="projects-grid">
+                    <!-- Projekte werden dynamisch geladen -->
+                    <div class="loading">Lade Projekte...</div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section id="skills" class="content-section">
+                <h2><i class="fas fa-tools"></i> Skills</h2>
+                <div class="skills-container">
+                    <!-- Skills werden dynamisch geladen -->
+                    <div class="loading">Lade Skills...</div>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section id="contact" class="content-section">
+                <h2><i class="fas fa-envelope"></i> Kontakt</h2>
+                <div class="contact-form">
+                    <p>Kontaktiere mich über:</p>
+                    <div class="contact-links">
+                        <a href="mailto:matthias@silberhain.com" class="contact-link">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                        <a href="https://github.com/matthias-silberhain" class="contact-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="https://linkedin.com/in/matthias-silberhain" class="contact-link" target="_blank">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes -->
+            <section id="notes" class="content-section">
+                <h2><i class="fas fa-sticky-note"></i> Notizen</h2>
+                <div class="notes-header">
+                    <button class="btn primary" onclick="createNote()">
+                        <i class="fas fa-plus"></i> Neue Notiz
+                    </button>
+                </div>
+                <div class="notes-container" id="notesContainer">
+                    <!-- Notizen werden hier geladen -->
+                    <div class="empty-notes">
+                        <i class="fas fa-sticky-note fa-3x"></i>
+                        <p>Noch keine Notizen</p>
+                        <button class="btn outline" onclick="createNote()">
+                            Erste Notiz erstellen
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cloud Sync -->
+            <section id="cloud" class="content-section">
+                <h2><i class="fas fa-cloud"></i> Cloud Sync</h2>
+                <div class="cloud-status" id="cloudStatus">
+                    <div class="loading">Prüfe Verbindung...</div>
+                </div>
+                <div class="cloud-actions">
+                    <button class="btn primary" onclick="syncToCloud()">
+                        <i class="fas fa-cloud-upload-alt"></i> Hochladen
+                    </button>
+                    <button class="btn secondary" onclick="restoreFromCloud()">
+                        <i class="fas fa-cloud-download-alt"></i> Herunterladen
+                    </button>
+                </div>
+                <div class="cloud-info">
+                    <p><i class="fas fa-info-circle"></i> Deine Notizen werden bei Supabase gespeichert.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Container -->
+        <div id="toastContainer" class="toast-container"></div>
+
+        <!-- Install Prompt -->
+        <div id="installPrompt" class="install-prompt">
+            <div class="install-content">
+                <i class="fas fa-download fa-2x"></i>
+                <div>
+                    <h4>App installieren</h4>
+                    <p>Für bessere Performance installieren</p>
+                </div>
+                <button class="btn primary" onclick="installApp()">Installieren</button>
+                <button class="btn outline" onclick="dismissInstall()">Später</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+    <script src="supabase.js"></script>
+</body>
+</html>
