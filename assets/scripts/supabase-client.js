@@ -7,20 +7,24 @@ class SupabaseClient {
     }
 
     init() {
-        // Supabase configuration
-        this.supabaseUrl = 'https://YOUR_PROJECT_ID.supabase.co';
-        this.supabaseKey = 'YOUR_ANON_KEY';
+        // ⚡️ HIER DEINE ECHTEN WERTE EINTRAGEN ⚡️
+        this.supabaseUrl = 'https://paiiblywfgxzfgpeigso.supabase.co';
+        this.supabaseKey = 'sb_publishable_orATJELFfh9ig99N7eCWGw_qz-TIClN'; // Dein Key aus dem Screenshot!
         
         // Try to initialize Supabase if available
         if (window.supabase) {
             this.supabase = window.supabase.createClient(this.supabaseUrl, this.supabaseKey);
             this.isConnected = true;
-            console.log('Supabase initialized successfully');
+            console.log('✅ Supabase erfolgreich initialisiert!');
+            console.log('URL:', this.supabaseUrl);
+            console.log('Key:', this.supabaseKey.substring(0, 10) + '...'); // Nur Anfang zeigen
         } else {
             console.warn('Supabase JS library not loaded. Running in offline mode.');
         }
     }
-
+    
+    // Rest bleibt gleich...
+}
     // Check if Supabase is available
     isAvailable() {
         return this.supabase !== null;
